@@ -28,6 +28,7 @@ import requests from "services/httpService";
 import CouponServices from "services/CouponServices";
 import SettingServices from "services/SettingServices";
 import { showingTranslateValue } from "utils/translate";
+import { showDateFormat } from "utils/dateFormate";
 // import { showingTranslateValue } from "utils/translate";
 // import { showDateFormat } from "utils/dateFormate";
 
@@ -39,7 +40,7 @@ const CouponTable = ({ lang, isCheck, setIsCheck }) => {
 
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer(data);
   // const { data, loading } = useAsync(CouponServices.getAllCoupons);
-  // const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
+  const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
   // console.log("coupons sir :", coupons)
   // console.log("coupons sir 1 :", setUpdatedCoupons)
   const handleClick = (e) => {
@@ -165,7 +166,11 @@ const CouponTable = ({ lang, isCheck, setIsCheck }) => {
                   coupon.startTime,
                   globalSetting?.default_date_format
                 )} */}
-                {coupon.createdAt}
+                {showDateFormat(
+                  coupon.updatedAt,
+                  globalSetting?.default_date_format
+                )}
+                {/* {coupon.createdAt} */}
               </span>
             </TableCell>
 
@@ -176,7 +181,11 @@ const CouponTable = ({ lang, isCheck, setIsCheck }) => {
                   coupon.endTime,
                   globalSetting?.default_date_format
                 )} */}
-                {coupon.updatedAt}
+                {showDateFormat(
+                  coupon.updatedAt,
+                  globalSetting?.default_date_format
+                )}
+                {/* {coupon.updatedAt} */}
               </span>
             </TableCell>
 

@@ -87,7 +87,7 @@ const useFilter = (data) => {
   const [role, setRole] = useState("");
   const [time, setTime] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataTable, setDataTable] = useState([]); //tableTable for showing on table according to filtering
+  const [dataTable, setDataTable] = useState([]); //DataTable for showing on table according to filtering
   const [todayOrder, setTodayOrder] = useState("");
   const [monthlyOrder, setMonthlyOrder] = useState("");
   const [totalOrder, setTotalOrder] = useState("");
@@ -108,12 +108,13 @@ const useFilter = (data) => {
   const taxRef = useRef("");
   const shippingRef = useRef("");
 
+
   dayjs.extend(isBetween);
   dayjs.extend(isToday);
   const location = useLocation();
   const { lang, setIsUpdate, setLoading } = useContext(SidebarContext);
   const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
-  console.log(" datas from filters : ", data)
+  // console.log(" datas from filters : ", data)
   //service data filtering
   const serviceData = useMemo(() => {
     const date = new Date();
@@ -330,6 +331,7 @@ const useFilter = (data) => {
   };
   const handleSubmitCoupon = (e) => {
     e.preventDefault();
+    // console.log("hi : ", couponRef.current.value)
     setSearchCoupon(couponRef.current.value);
   };
   const handleSubmitOrder = (e) => {
@@ -774,7 +776,6 @@ const useFilter = (data) => {
     handleSubmitAttribute,
     handleOnDrop,
     handleUploadProducts,
-
     countryRef,
     country,
     setCountry,
